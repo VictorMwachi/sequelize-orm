@@ -1,4 +1,4 @@
-const { DataTypes, Model }= require('sequelize');
+const { Sequelize, DataTypes, Model }= require('sequelize');
 const sequelize = new Sequelize('sequelize_db','sequelize_user','7mudaki',{
 	host:'localhost',
 	dialect:'postgres'
@@ -19,8 +19,8 @@ Product.init({
 modelName:'Product'});
 
 // Synchronize the model with the database
-async() =>{
+(async() =>{
 	await sequelize.sync();
-}
+})();
 
 module.exports = Product
