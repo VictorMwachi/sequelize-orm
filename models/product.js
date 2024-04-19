@@ -1,8 +1,8 @@
-const { Sequelize, DataTypes, Model }= require('sequelize');
-const sequelize = new Sequelize('sequelize_db','sequelize_user','7mudaki',{
+//const { Sequelize, DataTypes, Model }= require('sequelize');
+/**const sequelize = new Sequelize('sequelize_db','sequelize_user','7mudaki',{
 	host:'localhost',
 	dialect:'postgres'
-});
+});**/
 
 class Product extends Model {}
 
