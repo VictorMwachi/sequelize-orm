@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const { Model } = require('sequelize');
 
 module.exports = (sequelize,DataTypes)=>{
@@ -56,3 +57,31 @@ module.exports = (sequelize,DataTypes)=>{
    - Images: Images of the product for visual reference.
    */
 
+=======
+//const { Sequelize, DataTypes, Model }= require('sequelize');
+/**const sequelize = new Sequelize('sequelize_db','sequelize_user','7mudaki',{
+	host:'localhost',
+	dialect:'postgres'
+});**/
+
+class Product extends Model {}
+
+
+Product.init({
+	name:DataTypes.STRING,
+	code:DataTypes.STRING,
+	unitOfMeasure:DataTypes.STRING,
+	brand:DataTypes.STRING,
+	barcode:DataTypes.STRING,
+	quantityAtHand:DataTypes.INTEGER
+},
+{sequelize,
+modelName:'Product'});
+
+// Synchronize the model with the database
+(async() =>{
+	await sequelize.sync();
+})();
+
+module.exports = Product
+>>>>>>> 4e61f76c480b1e899aae7b69b0f18c4e7eae2f0a
