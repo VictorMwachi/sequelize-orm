@@ -52,7 +52,7 @@ app.put("/update/:id", async (req,res)=>{
 	const item = await Product.update(
 		{code:"003"},
 		{
-			where:{id:3},
+			where:{id:id},
 		});
 	item.save()
 
@@ -60,13 +60,13 @@ app.put("/update/:id", async (req,res)=>{
 })
 
 
-app.post("/delete",async (req,res)=>{
+app.delete("/delete/:id",async (req,res)=>{
 
 const item = await Product.destroy({
-	where:{id:18}
+	where:{id:id}
 })
 
-res.json(item)
+res.json(item).send("item deleted")
 })
 
 db.sequelize.sync({alter:true})
