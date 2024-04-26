@@ -1,6 +1,5 @@
 const express = require("express");
 const app = express();
-<<<<<<< HEAD
 const port = process.env.PORT || 3000
 app.use(express.json())
 
@@ -46,7 +45,7 @@ app.post("/add-product",async (req,res)=>{
 })
 app.put("/update/:id", async (req,res)=>{
 
-	console.log(req.body.id);
+	console.log(req.params.id);
 	console.log("above here");
 
 	/**
@@ -73,12 +72,4 @@ res.json(item)
 db.sequelize.sync({alter:true})
 app.listen(port,(req,res)=>{
 	console.log(`server running on port ......${port}`);
-=======
-const port = 3000
-
-const db =require("./models/index");
-db.sequelize.sync()
-app.listen(port,(req,res)=>{
-	console.log(`server running on port ${port}......`)
->>>>>>> 4e61f76c480b1e899aae7b69b0f18c4e7eae2f0a
 })
