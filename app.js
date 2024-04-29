@@ -8,18 +8,28 @@ const db =require("./models/index");
 const Product = db.product
 //console.log(db)
 
+//serve static files
+app.use(express.static(path.join(__dirname,'public')))
+
 
 app.get("/",async (req,res)=>{
 
 		const items = await Product.findAll()
 	
-	res.json(items)
+	res.sendFile(path.join(__dirname,'views','products.html'))
 })
-app.get("/products",async (req,res)=>{
+app.get("/product/:id",async (req,res)=>{
 
-	const items = await Product.findAll()
+	const item = await Product.findOne({where:{"id":req.params.id}})
+
+	if(!item){
+		res.send("item does not exist")
+	}
+	else{
+		res.json(item)
+
+	}
 	
-	res.json(items)
 })
 
 app.post("/add-product",async (req,res)=>{
@@ -56,19 +66,25 @@ app.put("/update/:id", async (req,res)=>{
 			where:{id:id},
 		});
 	item.save()
-
-	res.json(item)**/
+	**/
+	const item = await Product.findOne({where:{"id":req.params.id}})
+	res.json(item)
 })
 
 
 app.delete("/delete/:id",async (req,res)=>{
-
-const item = await Product.destroy({
-	where:{id:id}
+	try{
+		const item = await Product.destroy({
+			where:{id:req.params.id}
+		})
+		res.status(204).send("item deleted")
+	}
+	catch(error){
+		res.send(error)
+	}
 })
 
-res.json(item).send("item deleted")
-})
+
 
 db.sequelize.sync({alter:true})
 app.listen(port,(req,res)=>{
